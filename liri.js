@@ -1,10 +1,10 @@
 require("dotenv").config();
 
-let keys = require("keys.js");
-let spotify = new Spotify(keys.spotify);
-
 // Declare the variables for my required dependencies 
-const inquirer = require("inquirer");
+let keys = require("./keys");
+const spotifyAPI = require("node-spotify-api");
+const spotify = new spotifyAPI(keys.spotify);
+
 const axios = require("axios");
 const moment = require("moment");
 
@@ -16,16 +16,26 @@ let value = process.argv[3];
 function concertThis(value) {
     axios.get(`https://rest.bandsintown.com/artists/${value}/events?app_id=codingbootcamp`).then(
         function (response) {
-            const date = moment(response.data[0].datetime).format('MM DD YYYY');
-            console.log(`Name of the venue: ${response.data[0].venue.name}`);
+            const date = moment(response.data[0].datetime).format('MM/DD/YYYY');
+            console.log(`Venue name: ${response.data[0].venue.name}`);
             console.log(`Venue location: ${response.data[0].venue.city}`);
-            console.log(`Date of the event: ${date}`);
+            console.log(`Date: ${date}`);
             console.log(`===================================================================================`);
         }
     );
 };
 
-function spotifyThis(value) {};
+function spotifyThis(value) {
+    spotify.search({
+        type: 'track',
+        query: value
+    }, function (err, data) {
+        if (err) {
+            return console.log('Error occurred: ' + err);
+        }
+        console.log(`Listen to this: ${data.tracks}`);
+    });
+};
 
 function movieThis(value) {
     // Then run a request with axios to the OMDB API with the movie specified and log the response
@@ -46,19 +56,27 @@ function movieThis(value) {
 
 function doWhatItSays(value) {};
 
-
-
 function liriSearch() {
     if (choice === "concert-this") {
         concertThis(value);
     } else if (choice === "spotify-this-song") {
-        console.log("spotify working");
         spotifyThis(value);
     } else if (choice === "movie-this") {
         movieThis(value);
     } else if (choice === "do-what-it-says") {
         console.log("do working");
         doWhatItSays(value);
+    } else {
+        console.log(`===================================================================================`);
+        console.log(
+            `Type any of these commands after "node liri.js"
+            \n concert-this "the name of a concert you'd like to find"
+            \n spotify-this-song "any song title"
+            \n movie-this "any movie title"
+            \n "do-what-it-says"
+            \n please use quotes around multi-word searches`
+        );
+        console.log(`===================================================================================`);
     }
 }
 
