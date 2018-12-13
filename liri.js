@@ -2,8 +2,8 @@ require("dotenv").config();
 
 // Declare the variables for my required dependencies 
 let keys = require("./keys");
-const spotifyAPI = require("node-spotify-api");
-const spotify = new spotifyAPI(keys.spotify);
+let Spotify = require("node-spotify-api");
+let spotify = new Spotify(keys.spotify);
 
 const axios = require("axios");
 const moment = require("moment");
@@ -29,7 +29,7 @@ function spotifyThis(value) {
     spotify.search({
         type: 'track',
         query: value
-    }, function (err, data) {
+    }).then(function(err, data) {
         if (err) {
             return console.log('Error occurred: ' + err);
         }
@@ -69,8 +69,8 @@ function liriSearch() {
     } else {
         console.log(`===================================================================================`);
         console.log(
-            `Type any of these commands after "node liri.js"
-            \n concert-this "the name of a concert you'd like to find"
+            `First type "node liri.js" followed by any of these commands: 
+            \n concert-this "the name of an artist who is touring"
             \n spotify-this-song "any song title"
             \n movie-this "any movie title"
             \n "do-what-it-says"
