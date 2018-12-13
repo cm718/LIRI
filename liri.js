@@ -40,7 +40,7 @@ function spotifyThis(value) {
                 const songName = `Song name: ${songs.name}`;
                 const preview = `Preview: ${songs.preview_url}`;
                 const albumName = `Album name: ${songs.album.name}`;
-                const line = '----------------------------------';
+                const line = `===================================================================================`;
                 console.log(artist)
                 console.log(songName);
                 console.log(preview)
