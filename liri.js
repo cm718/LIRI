@@ -27,15 +27,28 @@ function concertThis(value) {
 
 function spotifyThis(value) {
     spotify.search({
-        type: 'track',
-        query: value
-    }).then(function(err, data) {
-        if (err) {
-            return console.log('Error occurred: ' + err);
-        }
-        console.log(`Listen to this: ${data.tracks}`);
-    });
-};
+            type: 'track',
+            query: `${value}`,
+            limit: 3
+        })
+        .then(function (response) {
+
+            let a = response.tracks.items;
+            // console.log(a)
+            a.forEach(songs => {
+                const artist = `Artist(s): ${songs.artists[0].name}`;
+                const songName = `Song name: ${songs.name}`;
+                const preview = `Preview: ${songs.preview_url}`;
+                const albumName = `Album name: ${songs.album.name}`;
+                const line = '----------------------------------';
+                console.log(artist)
+                console.log(songName);
+                console.log(preview)
+                console.log(albumName)
+                console.log(line)
+            });
+        });
+}
 
 function movieThis(value) {
     // Then run a request with axios to the OMDB API with the movie specified and log the response
