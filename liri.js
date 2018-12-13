@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // require("dotenv").config();
 
 // let keys = require("keys.js");
@@ -66,3 +67,8 @@ function liriSearch() {
 }
 
 liriSearch();
+=======
+require("dotenv").config();
+
+let keys = require(keys.js);
+>>>>>>> 484e2e1d1afad769e5a8777b3b4851f13e143ff7
