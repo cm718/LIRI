@@ -4,9 +4,9 @@ require("dotenv").config();
 let keys = require("./keys");
 let Spotify = require("node-spotify-api");
 let spotify = new Spotify(keys.spotify);
-
 const axios = require("axios");
 const moment = require("moment");
+const fs = require("fs");
 
 // Declare the variables that will hold the user input
 let choice = process.argv[2];
@@ -67,30 +67,63 @@ function movieThis(value) {
     );
 };
 
-function doWhatItSays(value) {};
+function doWhatItSays() {
+    // Use fs to read the random.txt file and run the search
+    fs.readFile("random.txt", "utf8", function (error, data) {
+        // If the code experiences any errors it will log the error to the console.
+        if (error) {
+            return console.log(error);
+        }
+        // We will then run the search
+        console.log(data);
+
+        // Then split it by commas (to make it more readable)
+        let dataArr = data.split(",");
+
+        // We will then re-display the content as an array for later use.
+        let choice = dataArr[0];
+        let value = dataArr[1];
+
+        function doSearch() {
+            if (choice === "concert-this") {
+                concertThis(value);
+            } else if (choice === "spotify-this-song") {
+                spotifyThis(value);
+            } else if (choice === "movie-this") {
+                movieThis(value);
+            }
+        }
+        doSearch();
+    });
+};
 
 function liriSearch() {
     if (choice === "concert-this") {
         concertThis(value);
     } else if (choice === "spotify-this-song") {
-        spotifyThis(value);
+        if (value){
+            spotifyThis(value);
+        } else {
+            let value = "The sign by ace of base";
+            spotifyThis(value);
+        }
+        
     } else if (choice === "movie-this") {
         movieThis(value);
     } else if (choice === "do-what-it-says") {
-        console.log("do working");
-        doWhatItSays(value);
+        doWhatItSays();
     } else {
         console.log(`===================================================================================`);
         console.log(
             `First type "node liri.js" followed by any of these commands: 
-            \n concert-this "the name of an artist who is touring"
-            \n spotify-this-song "any song title"
-            \n movie-this "any movie title"
-            \n "do-what-it-says"
-            \n please use quotes around multi-word searches`
+        \n concert-this "the name of an artist who is touring"
+        \n spotify-this-song "any song title"
+        \n movie-this "any movie title"
+        \n "do-what-it-says"
+        \n please use quotes around multi-word searches`
         );
         console.log(`===================================================================================`);
     }
-}
+};
 
 liriSearch();
