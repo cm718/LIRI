@@ -10,7 +10,7 @@ const fs = require("fs");
 
 // Declare the variables that will hold the user input
 let choice = process.argv[2];
-let value = process.argv[3];
+let value = process.argv.slice(3).join(" ");
 
 // Setting up the function for the 4 user search options
 function concertThis(value) {
@@ -119,9 +119,7 @@ function liriSearch() {
         \n concert-this "the name of an artist who is touring"
         \n spotify-this-song "any song title"
         \n movie-this "any movie title"
-        \n "do-what-it-says"
-        \n please use quotes around multi-word searches`
-        );
+        \n "do-what-it-says"`);
         console.log(`===================================================================================`);
     }
 };
