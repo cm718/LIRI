@@ -25,6 +25,7 @@ function concertThis(value) {
     );
 };
 
+// Function to search on the Spotify API
 function spotifyThis(value) {
     spotify.search({
             type: 'track',
@@ -50,23 +51,30 @@ function spotifyThis(value) {
         });
 }
 
+// Function to search on the OMDB API
 function movieThis(value) {
-    // Then run a request with axios to the OMDB API with the movie specified and log the response
-    axios.get(`http://www.omdbapi.com/?t=${value}&y=&plot=short&apikey=trilogy`).then(
-        function (response) {
-            console.log(`Title: ${response.data.Title}`);
-            console.log(`Year: ${response.data.Year}`);
-            console.log(`IMDB rating: ${response.data.imdbRating}`);
-            console.log(`Rotten Tomatoes: ${response.data.Ratings[1].Value}`);
-            console.log(`Country: ${response.data.Country}`);
-            console.log(`Language: ${response.data.Language}`);
-            console.log(`Plot: ${response.data.Plot}`);
-            console.log(`Actors: ${response.data.Actors}`);
-            console.log(`===================================================================================`);
-        }
-    );
+    if (!value) {
+        value = "mr nobody";
+        movieThis(value);
+    } else {
+        // Then run a request with axios to the OMDB API with the movie specified and log the response
+        axios.get(`http://www.omdbapi.com/?t=${value}&y=&plot=short&apikey=trilogy`).then(
+            function (response) {
+                console.log(`Title: ${response.data.Title}`);
+                console.log(`Year: ${response.data.Year}`);
+                console.log(`IMDB rating: ${response.data.imdbRating}`);
+                console.log(`Rotten Tomatoes: ${response.data.Ratings[1].Value}`);
+                console.log(`Country: ${response.data.Country}`);
+                console.log(`Language: ${response.data.Language}`);
+                console.log(`Plot: ${response.data.Plot}`);
+                console.log(`Actors: ${response.data.Actors}`);
+                console.log(`===================================================================================`);
+            }
+        );
+    }
 };
 
+// Function to run a random search for whatever is written in our random.txt file
 function doWhatItSays() {
     // Use fs to read the random.txt file and run the search
     fs.readFile("random.txt", "utf8", function (error, data) {
@@ -97,17 +105,17 @@ function doWhatItSays() {
     });
 };
 
+// Main function that runs the other functions based on user input
 function liriSearch() {
     if (choice === "concert-this") {
         concertThis(value);
     } else if (choice === "spotify-this-song") {
-        if (value){
+        if (value) {
             spotifyThis(value);
         } else {
-            let value = "The sign by ace of base";
+            value = "The sign by ace of base";
             spotifyThis(value);
         }
-        
     } else if (choice === "movie-this") {
         movieThis(value);
     } else if (choice === "do-what-it-says") {
@@ -124,4 +132,5 @@ function liriSearch() {
     }
 };
 
+// Calling the main LIRI search function to begin the app
 liriSearch();
