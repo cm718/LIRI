@@ -25,7 +25,7 @@ LIRI will search the Open Movie Database API and return the most relevant movie 
 
 ## Search something random
 Lastly, if you're not sure what to search for you can simply run: "node liri do-what-it-says".
-This will return a random search from the file "random.txt". It could be a movie, concert, or song result. **Below is an image of a random search. I underlined in red how to type the command.**
+This will return a random search from the file "random.txt". It could be a movie, concert, or song result. Currently it returns a movie search for Silverado, if you haven't seen it I recommend it. **Below is an image of a random search. I underlined in red how to type the command.**
 
 ![liri random](/images/do.png)
 
