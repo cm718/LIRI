@@ -5,20 +5,20 @@ A Node based SIRI CLI app that makes searches to Spotify, BandsInTown, and OMDB 
 LIRI will then give you the options for how use the app.
 
 ## Search Concerts with Bands In Town
-To search for a concert just type "node liri concert-this <the name of an artist who is touring>".
+To search for a concert just type "node liri concert-this **any artist who is touring**".
 LIRI will then take the search and apply it to the Bands In Town API and return the soonest result for a concert for that artist. 
 **Below is an image of a BandsInTown search. I underlined in red how to type the command.**
 
 ![liri concert](/images/concert.png)
 
 ## Search Songs on Spotify
-To search for a song just type "node liri spotify-this-song <song title>".
+To search for a song just type "node liri spotify-this-song **any song title**".
 LIRI will search the Spotify API and return several relevant results including links to listen to a portion of the song. **Below is an image of a Spotify search. I underlined in red how to type the command.**
 
 ![liri spotify](/images/spotify.png)
 
 ## Search Movies with OMDB
-To search for a movie just type "node liri movie-this <the title of a movie>".
+To search for a movie just type "node liri movie-this **any movie title>".
 LIRI will search the Open Movie Database API and return the most relevant movie as well as Rotten Tomatoes score, year, actors, plot and more. **Below is an image of an OMDB search. I underlined in red how to type the command.**
 
 ![liri movie](/images/movie.png)
