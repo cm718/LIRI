@@ -2,7 +2,7 @@
 A Node based SIRI CLI app that makes searches to Spotify, BandsInTown, and OMDB API's.
 
 # To begin just type "node liri" in the command line and hit enter
-LIRI will then be give you the options for how use the app.
+LIRI will then give you the options for how use the app.
 
 ## Search Concerts with Bands In Town
 To search for a concert just type "node liri concert-this <the name of an artist who is touring>".
