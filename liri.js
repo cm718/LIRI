@@ -1,3 +1,4 @@
+// Require in the .env file that holds my private Spotify keys
 require("dotenv").config();
 
 // Declare the variables for my required dependencies 
