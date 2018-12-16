@@ -29,7 +29,7 @@ This will return a random search from the file "random.txt". It could be a movie
 
 ![liri random](/images/do.png)
 
-## To creat LIRI ...
+## To create LIRI ...
 I had to get access to the three API's that were used to power the app; Spotify, BandsInTown, and OMDB. I created a .env file to hide the Spotify keys. These included a Client ID and a Secret Key. These were then called into a keys.js file, which was then required into the main liri.js file. This allows the keys to remain secret even while saving my work publicly to GitHub.
 
 I mention this both so that you know how I got the app to work as well as so that you could run the app yourself if you would like to clone the repository.
